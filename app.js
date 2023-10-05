@@ -13,15 +13,18 @@ const multiplicationEl =  document.querySelector('.multiplication');
 const divisionEl =  document.querySelector('.division');
 const equalEl =  document.querySelector('.equal');
 
-// Set up the time
+// Update time
 const updateTime = () => {
-     const currentTime = new Date();
-
+    const currentTime = new Date();
     const currentHour = currentTime.getHours();
     const currentMinute = currentTime.getMinutes();
 
-    hourEl.textContent = currentHour.toString();
-    minuteEl.textContent = currentMinute.toString().padStart(2, '0');
+    if (hourEl && minuteEl) {
+        hourEl.textContent = currentHour.toLocaleString();
+        minuteEl.textContent = currentMinute.toLocaleString(undefined, { minimumIntegerDigits: 2 });
+    }
 }
+
+// Call the function once and then repeatedly every second
 setInterval(updateTime, 1000);
 updateTime();
